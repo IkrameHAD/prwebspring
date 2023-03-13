@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.centrale.prweb.prwebspring.items.Person;
+import org.centrale.prweb.prwebspring.repositories.BookRepository;
 import org.centrale.prweb.prwebspring.repositories.PersonRepository;
 import org.centrale.prweb.prwebspring.repositories.PersonRepositoryCustomImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,9 @@ public class PersonController {
     
     @Autowired
     private PersonRepository personRepository;
-    @Autowired
-    private PersonRepositoryCustomImpl personRepositoryCustomImpl;
+     @Autowired
+    private BookRepository bookRepository;
+    
     
     private int getIntFromString(String value) {
         int intValue = -1;
@@ -57,6 +59,7 @@ public class PersonController {
             Person person = personRepository.getReferenceById(id);
             returned = new ModelAndView("user");
             returned.addObject("user", person);
+            returned.addObject("booksList", bookRepository.findAll());
         } else {
             returned = new ModelAndView("users");
             Collection<Person> myList = personRepository.findAll();
@@ -106,9 +109,9 @@ public class PersonController {
             person.setPersonFirstname(firstname);
             person.setPersonLastname(lastname);
             person.setPersonBirthdate(birthdate);
-            personRepositoryCustomImpl.update(id, person);
+            personRepository.update(id, person);
         } else {
-            personRepositoryCustomImpl.create(firstname, lastname, birthdate);
+            personRepository.create(firstname, lastname, birthdate);
         }
         
         returned = new ModelAndView("users");
@@ -132,7 +135,7 @@ public class PersonController {
         
         if (id > 0) {
             //ID may exist
-            personRepositoryCustomImpl.remove(id);
+            personRepository.remove(id);
         }
         
         returned = new ModelAndView("users");
@@ -149,7 +152,7 @@ public class PersonController {
         Person newPerson = new Person();
         returned = new ModelAndView("user");
         returned.addObject("user", newPerson);
-        
+        returned.addObject("booksList", bookRepository.findAll());
         return returned;
     }
     

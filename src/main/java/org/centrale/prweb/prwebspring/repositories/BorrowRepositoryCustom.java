@@ -4,10 +4,16 @@
  */
 package org.centrale.prweb.prwebspring.repositories;
 
+import java.util.Date;
+import org.centrale.prweb.prwebspring.items.*;
+
 /**
  *
  * @author T480
  */
 public interface BorrowRepositoryCustom {
-    
+    public Borrow returnBook(Borrow item, Date date);
+    public Borrow returnBook(Borrow item);
+    public Borrow returnBook(int borrowId);
+    public Borrow create(Person user, Book book);
 }

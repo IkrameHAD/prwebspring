@@ -1,4 +1,5 @@
 org.centrale.prweb.prwebspring.controllers.BookController=org.springframework.stereotype.Component
+org.centrale.prweb.prwebspring.controllers.BorrowController=org.springframework.stereotype.Component
 org.centrale.prweb.prwebspring.controllers.IndexController=org.springframework.stereotype.Component
 org.centrale.prweb.prwebspring.controllers.PersonController=org.springframework.stereotype.Component
 org.centrale.prweb.prwebspring.items.Book=javax.persistence.Entity,javax.persistence.Table,javax.persistence.NamedQueries

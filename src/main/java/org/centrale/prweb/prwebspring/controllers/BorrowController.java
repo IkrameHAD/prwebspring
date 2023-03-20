@@ -44,7 +44,7 @@ public class BorrowController {
         return intValue;
     }
     
-    @RequestMapping(value = "returnBorrow.do", method = RequestMethod.POST)
+    @RequestMapping(value = "returnborrow.do", method = RequestMethod.POST)
     public ModelAndView handleReturn(HttpServletRequest request) {
         ModelAndView returned = new ModelAndView("ajax");
         JSONObject returnedObject = new JSONObject();
@@ -73,7 +73,16 @@ public class BorrowController {
         int bookID = getIntFromString(bookStr);
         Book book = bookRepository.getReferenceById(bookID);
         
-        borrowRepositoryCustomImpl.create(user, book);
+        Borrow borrow = borrowRepository.create(user, book);
+        if(!user.getBorrowCollection().contains(borrow)){
+           user.getBorrowCollection().add(borrow);
+           personRepository.saveAndFlush(user);
+        }
+        if(!book.getBorrowCollection().contains(borrow)){
+           book.getBorrowCollection().add(borrow);
+           bookRepository.saveAndFlush(book);
+        }
+
         // Refresh user data (bookCollection)
         user = personRepository.getReferenceById(userID);
         

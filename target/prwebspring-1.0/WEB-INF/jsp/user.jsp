@@ -100,7 +100,7 @@
                                     </c:forEach>  
                                 </tbody>
                                 <tfoot>
-                                    <form action="addBorrow.do" method="POST">
+                                    <form action="addborrow.do" method="POST">
                                         <tr>
                                             <td colspan="2">
                                                 <input type="hidden" name="userID" value="${user.personId}" />

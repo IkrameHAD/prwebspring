@@ -31,6 +31,7 @@
                                             <th scope="col" class="text-center">book #</th>
                                             <th scope="col" class="text-center">Title</th>
                                             <th scope="col" class="text-center">Authors</th>
+                                            <th scope="col" class="text-center">Available</th>
                                             <th scope="col"></th>
                                         </tr>
                                     </thead>
@@ -40,6 +41,12 @@
                                                 <td scope="col">${item.bookId}</td>
                                                 <td>${item.bookTitle}</td>
                                                 <td>${item.bookAuthors}</td>
+                                                <c:if test = "${item.bookAvailable == 0}">
+                                                    <td>Not available</td>
+                                                </c:if>
+                                                <c:if test = "${item.bookAvailable == 1}">
+                                                    <td>Available</td>
+                                                </c:if>
                                                 <td class="text-center">
                                                     <form action="editbook.do" method="POST">
                                                         <input type="hidden" name="id" value="${item.bookId}" />
@@ -55,7 +62,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr id="addNew">
-                                            <td scope="col" colspan="3"></td>
+                                            <td scope="col" colspan="4"></td>
                                             <form action="createbook.do" method="POST">                
                                                 <td class="text-center"><button class="btn"><img src="img/plus.png" alt="add" class="icon" /></button></td>
                                             </form>    

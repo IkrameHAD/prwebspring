@@ -43,6 +43,17 @@
                                         <th scope="col">Authors</th>
                                         <td><input type="text" class="form-control" name="Authors" value="${book.bookAuthors}" /></td>
                                     </tr>
+                                    <tr>
+                                        <th scope="col">Available</th>
+                                        <td>
+                                            <input type="hidden" name="Available" id="availableInput" value="${book.bookAvailable}" />
+                                            <select name="Available" class="form-control form-select form-select-lg mb-3" onchange="document.getElementById('availableInput').value = this.value;">
+                                                <option value="-1">-</option>
+                                                <option value="0" <c:if test="${book.bookAvailable == 0}">selected="selected"</c:if>>Not available</option>
+                                                <option value="1" <c:if test="${book.bookAvailable == 1}">selected="selected"</c:if>>Available</option>
+                                            </select>
+                                        </td>
+                                    </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr>

@@ -10,4 +10,5 @@ public interface BookRepositoryCustom {
     public Book update(int id, Book book);
     public void remove(int id);
     public Book create(String title, String authors);
+    public Book notAvailable(int id);
 }

@@ -1,4 +1,5 @@
 org\centrale\prweb\prwebspring\items\Person_.class
+org\centrale\prweb\prwebspring\items\Bookk.class
 org\centrale\prweb\prwebspring\items\Person.class
 org\centrale\prweb\prwebspring\repositories\PersonRepositoryCustomImpl.class
 META-INF\spring.components
@@ -11,6 +12,7 @@ org\centrale\prweb\prwebspring\controllers\IndexController.class
 org\centrale\prweb\prwebspring\repositories\BookRepositoryCustom.class
 org\centrale\prweb\prwebspring\repositories\BookRepositoryCustomImpl.class
 org\centrale\prweb\prwebspring\repositories\PersonRepository.class
+org\centrale\prweb\prwebspring\items\Bookk_.class
 org\centrale\prweb\prwebspring\items\Book.class
 org\centrale\prweb\prwebspring\items\Borrow.class
 org\centrale\prweb\prwebspring\controllers\BookController.class

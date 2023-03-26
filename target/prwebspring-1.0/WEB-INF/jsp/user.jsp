@@ -107,7 +107,9 @@
                                                 <select name="bookID" class="form-control form-select form-select-lg mb-3">
                                                     <option value="-1" selected="selected">-</option>
                                                     <c:forEach var="book" items="${booksList}">
-                                                        <option value="${book.bookId}">${book.bookTitle}</option>
+                                                        <c:if test="${book.bookAvailable == 1}">
+                                                            <option value="${book.bookId}">${book.bookTitle}</option>
+                                                        </c:if>
                                                     </c:forEach>
                                                 </select>
                                             </td>

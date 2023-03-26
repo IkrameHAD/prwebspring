@@ -53,4 +53,15 @@ public class BookRepositoryCustomImpl implements BookRepositoryCustom {
         }
         return null;
     }
+    
+    @Override
+    public Book notAvailable(int id) {
+        if (id > 0) {
+            Book book = repository.getReferenceById(id);
+            book.setBookAvailable(0);
+            repository.saveAndFlush(book);
+            return book;
+        }
+        return null;
+    }
 }

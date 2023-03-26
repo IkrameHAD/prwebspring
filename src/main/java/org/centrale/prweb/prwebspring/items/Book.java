@@ -30,7 +30,8 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b"),
     @NamedQuery(name = "Book.findByBookId", query = "SELECT b FROM Book b WHERE b.bookId = :bookId"),
     @NamedQuery(name = "Book.findByBookTitle", query = "SELECT b FROM Book b WHERE b.bookTitle = :bookTitle"),
-    @NamedQuery(name = "Book.findByBookAuthors", query = "SELECT b FROM Book b WHERE b.bookAuthors = :bookAuthors")})
+    @NamedQuery(name = "Book.findByBookAuthors", query = "SELECT b FROM Book b WHERE b.bookAuthors = :bookAuthors"),
+    @NamedQuery(name = "Book.findByBookAvailable", query = "SELECT b FROM Book b WHERE b.bookAvailable = :bookAvailable")})
 public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,6 +50,10 @@ public class Book implements Serializable {
     @Size(min = 1, max = 256)
     @Column(name = "book_authors")
     private String bookAuthors;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "book_available")
+    private int bookAvailable;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
     private Collection<Borrow> borrowCollection;
 
@@ -59,10 +64,11 @@ public class Book implements Serializable {
         this.bookId = bookId;
     }
 
-    public Book(Integer bookId, String bookTitle, String bookAuthors) {
+    public Book(Integer bookId, String bookTitle, String bookAuthors, int bookAvailable) {
         this.bookId = bookId;
         this.bookTitle = bookTitle;
         this.bookAuthors = bookAuthors;
+        this.bookAvailable = bookAvailable;
     }
 
     public Integer getBookId() {
@@ -89,6 +95,14 @@ public class Book implements Serializable {
         this.bookAuthors = bookAuthors;
     }
 
+    public int getBookAvailable() {
+        return bookAvailable;
+    }
+
+    public void setBookAvailable(int bookAvailable) {
+        this.bookAvailable = bookAvailable;
+    }
+    
     public Collection<Borrow> getBorrowCollection() {
         return borrowCollection;
     }

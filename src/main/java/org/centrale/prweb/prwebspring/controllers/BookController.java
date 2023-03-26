@@ -77,11 +77,17 @@ public class BookController {
         String title = request.getParameter("Title");
         String authors = request.getParameter("Authors");
         
+        String availableStr = request.getParameter("Available");
+        int available = getIntFromString(availableStr);
+        
         if (id > 0) {
             //ID may exist
             Book book = bookRepository.getReferenceById(id);
             book.setBookTitle(title);
             book.setBookAuthors(authors);
+            if (available != -1) {
+                book.setBookAvailable(available);
+            }
             bookRepositoryCustomImpl.update(id, book);
         } else {
             bookRepositoryCustomImpl.create(title, authors);
@@ -108,7 +114,12 @@ public class BookController {
         
         if (id > 0) {
             //ID may exist
+            /**
             bookRepositoryCustomImpl.remove(id);
+            */
+            Book book = bookRepositoryCustomImpl.notAvailable(id);
+            returned = new ModelAndView("book");
+            returned.addObject("book", book);
         }
         
         returned = new ModelAndView("books");

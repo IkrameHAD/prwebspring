@@ -4,6 +4,7 @@
  */
 package org.centrale.prweb.prwebspring.controllers;
 
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -62,7 +63,28 @@ public class BorrowController {
         
         return returned;  
     }
+    
+    @RequestMapping(value = "returnbook.do", method = RequestMethod.POST)
+    public ModelAndView handleReturnBorrow(HttpServletRequest request) {
+        ModelAndView returned;
         
+        returned = new ModelAndView("borrows");
+        
+        String idStr = request.getParameter("id");
+        int id = getIntFromString(idStr);
+        
+        if (id > 0) {
+            //ID may exist
+            Borrow borrow = borrowRepository.returnBook(id);
+            returned.addObject("borrow", borrow);
+        }
+        
+        Collection<Borrow> myList = borrowRepository.findAll();
+        returned.addObject("borrowsList", myList);
+        
+        return returned;
+    }
+    
     @RequestMapping(value = "addborrow.do", method = RequestMethod.POST)
     public ModelAndView handleAddBorrow(HttpServletRequest request) {
         String userStr = request.getParameter("userID");
@@ -91,5 +113,16 @@ public class BorrowController {
         returned.addObject("booksList", bookRepository.findAll());
         
         return returned; 
+    }
+    
+    @RequestMapping(value="borrows.do", method=RequestMethod.POST)
+    public ModelAndView handleBorrowsPost(HttpServletRequest request) {
+        ModelAndView returned;
+        
+        returned = new ModelAndView("borrows");
+        Collection<Borrow> myList = borrowRepository.findAll();
+        returned.addObject("borrowsList", myList);
+        
+        return returned;
     }
 }

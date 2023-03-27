@@ -3,7 +3,6 @@ org\centrale\prweb\prwebspring\items\Bookk.class
 org\centrale\prweb\prwebspring\items\Person.class
 org\centrale\prweb\prwebspring\repositories\PersonRepositoryCustomImpl.class
 META-INF\spring.components
-org\centrale\prweb\prwebspring\controllers\personRepository.class
 org\centrale\prweb\prwebspring\controllers\BorrowController.class
 org\centrale\prweb\prwebspring\items\Book_.class
 org\centrale\prweb\prwebspring\repositories\BorrowRepositoryCustom.class

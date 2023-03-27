@@ -47,7 +47,7 @@ function returnBorrow(buttonRef, borrowId) {
             url: "returnborrow.do",
             method: "POST",
             data: {
-                "id": borrowId,
+                "id": borrowId
             },
             success: function (theResult) {
                 returnBorrowSuccess(theResult, buttonRef);

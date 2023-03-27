@@ -13,6 +13,7 @@
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
+        <%@ include file="navbar.jsp" %>
         <div class="py-3">
             <div class="container">
                 <div class="row">
